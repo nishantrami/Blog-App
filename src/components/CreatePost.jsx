@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
@@ -13,8 +13,11 @@ function CreatePost() {
         setPost({
             ...post,
             [e.target.name]: e.target.value,
+
         });
+        inputRef.current.style.color = '#0105ffff';
     };
+    const inputRef = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -51,6 +54,7 @@ function CreatePost() {
                 <input
                     type="text"
                     name="title"
+                    ref={inputRef}
                     className="form-input-simple"
                     value={post.title}
                     onChange={handleChange}
