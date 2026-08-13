@@ -12,18 +12,15 @@ function Home() {
 
     const loadPosts = async () => {
         try {
-            // Check LocalStorage first
             const localPosts = localStorage.getItem("blogPosts");
 
             if (localPosts) {
                 setPosts(JSON.parse(localPosts));
             } else {
-                // Fetch from API
                 const data = await getPosts();
 
                 setPosts(data);
 
-                // Save in LocalStorage
                 localStorage.setItem("blogPosts", JSON.stringify(data));
             }
         } catch (error) {
